@@ -1,0 +1,48 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\davi.peixoto\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.3.0
+2 info using node@v22.18.0
+3 silly config load:file:C:\Users\davi.peixoto\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:C:\SERVIDOR\app-frauda\.npmrc
+5 silly config load:file:C:\Users\davi.peixoto\.npmrc
+6 silly config load:file:C:\Users\davi.peixoto\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm init
+8 verbose argv "init" "--yes"
+9 verbose logfile logs-max:10 dir:C:\SERVIDOR\app-frauda\Usersdavi.peixotoAppDataLocalnpm-cache\_logs\2025-11-29T20_42_25_877Z-
+10 verbose logfile C:\SERVIDOR\app-frauda\Usersdavi.peixotoAppDataLocalnpm-cache\_logs\2025-11-29T20_42_25_877Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly logfile done cleaning log files
+13 silly package data {
+13 silly package data   name: 'frauda-sorteio',
+13 silly package data   version: '1.0.0',
+13 silly package data   main: 'server.js',
+13 silly package data   type: 'module',
+13 silly package data   dependencies: {
+13 silly package data     '@vercel/postgres': '^0.10.0',
+13 silly package data     'body-parser': '^1.20.2',
+13 silly package data     ejs: '^3.1.9',
+13 silly package data     express: '^4.18.2',
+13 silly package data     'express-session': '^1.18.2'
+13 silly package data   },
+13 silly package data   scripts: { start: 'node server.js' },
+13 silly package data   description: '',
+13 silly package data   devDependencies: {},
+13 silly package data   repository: {
+13 silly package data     type: 'git',
+13 silly package data     url: 'git+https://github.com/Davi-Peixoto-Silva/app-cha-fruda-ester.git'
+13 silly package data   },
+13 silly package data   keywords: [],
+13 silly package data   author: '',
+13 silly package data   license: 'ISC',
+13 silly package data   bugs: {
+13 silly package data     url: 'https://github.com/Davi-Peixoto-Silva/app-cha-fruda-ester/issues'
+13 silly package data   },
+13 silly package data   homepage: 'https://github.com/Davi-Peixoto-Silva/app-cha-fruda-ester#readme',
+13 silly package data   [Symbol(newline)]: '\r\n',
+13 silly package data   [Symbol(indent)]: '    '
+13 silly package data }
+14 verbose cwd C:\SERVIDOR\app-frauda
+15 verbose os Windows_NT 10.0.22631
+16 verbose node v22.18.0
+17 verbose npm  v11.3.0
+18 verbose exit 0
+19 info ok

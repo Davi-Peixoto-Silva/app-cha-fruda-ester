@@ -4,12 +4,14 @@ import bodyParser from "body-parser";
 import session from "express-session";
 import path from "path";
 import { fileURLToPath } from "url";
+import pgSimple from "connect-pg-simple"; // NECESSÁRIO PARA LOGIN NA VERCEL
 
-// --- CONFIGURAÇÃO PARA ES MODULES (CORREÇÃO DO __DIRNAME) ---
+// --- CONFIGURAÇÃO PARA ES MODULES ---
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+const pgSession = pgSimple(session); // INICIALIZA O STORE DA SESSÃO
 
 // --- CONFIGURAÇÕES DO SISTEMA ---
 const SENHA_ADMIN = "admin123"; 
@@ -45,15 +47,27 @@ const VERSICULOS = [
 
 // --- MIDDLEWARES ---
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views")); // Importante para a Vercel achar a pasta
+app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// IMPORTANTE: Confiar no Proxy da Vercel (HTTPS)
+app.set('trust proxy', 1);
+
 app.use(session({
+    store: new pgSession({
+        conString: process.env.POSTGRES_URL, // Usa a URL do banco da Vercel
+        createTableIfMissing: true // Cria a tabela de sessão automaticamente
+    }),
     secret: "chave-secreta-do-cha-da-ester",
     resave: false,
-    saveUninitialized: true,
-    cookie: { maxAge: 3600000 } 
+    saveUninitialized: false,
+    cookie: { 
+        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 dias
+        secure: true, // OBRIGATÓRIO NA VERCEL (HTTPS)
+        httpOnly: true,
+        sameSite: 'none' // Importante para mobile/cross-site
+    } 
 }));
 
 // --- ROTA DE CRIAÇÃO DO BANCO (EXECUTAR UMA VEZ) ---
@@ -69,7 +83,7 @@ app.get("/setup-db", async (req, res) => {
                 data TIMESTAMP DEFAULT NOW()
             );
         `;
-        return res.send("Tabela criada com sucesso no Postgres!");
+        return res.send("Tabelas verificadas com sucesso! (Tabela 'session' criada automaticamente pelo plugin).");
     } catch (error) {
         return res.status(500).json({ error });
     }
@@ -80,30 +94,15 @@ app.get("/setup-db", async (req, res) => {
 app.get("/", async (req, res) => {
     try {
         const { rows } = await sql`SELECT numero, nome FROM escolhas`;
-        
         const ocupados = rows.map(r => r.numero);
         const ocupadosNomes = {};
-        rows.forEach(row => {
-            ocupadosNomes[row.numero] = row.nome.split(' ')[0]; 
-        });
-
+        rows.forEach(row => { ocupadosNomes[row.numero] = row.nome.split(' ')[0]; });
         const progresso = Math.round((ocupados.length / 300) * 100);
         
-        res.render("index", { 
-            ocupados, 
-            ocupadosNomes, 
-            progresso, 
-            nomeBebe: NOME_BEBE 
-        });
+        res.render("index", { ocupados, ocupadosNomes, progresso, nomeBebe: NOME_BEBE });
     } catch (err) {
         console.error(err);
-        // Se der erro, carrega vazio para não quebrar a tela
-        res.render("index", { 
-            ocupados: [], 
-            ocupadosNomes: {}, 
-            progresso: 0, 
-            nomeBebe: NOME_BEBE 
-        });
+        res.render("index", { ocupados: [], ocupadosNomes: {}, progresso: 0, nomeBebe: NOME_BEBE });
     }
 });
 
@@ -112,11 +111,7 @@ app.post("/registrar", async (req, res) => {
     const versiculoSorteado = VERSICULOS[Math.floor(Math.random() * VERSICULOS.length)];
 
     try {
-        await sql`
-            INSERT INTO escolhas (numero, nome, telefone, fralda, data) 
-            VALUES (${numero}, ${nome}, ${telefone}, ${fralda}, NOW())
-        `;
-
+        await sql`INSERT INTO escolhas (numero, nome, telefone, fralda, data) VALUES (${numero}, ${nome}, ${telefone}, ${fralda}, NOW())`;
         res.render("mensagem", { 
             titulo: "Sucesso!", 
             msg: `Você garantiu o número ${numero} para o Chá da ${NOME_BEBE}! Obrigado por participar!`,
@@ -124,13 +119,8 @@ app.post("/registrar", async (req, res) => {
             versiculo: versiculoSorteado
         });
     } catch (err) {
-        if (err.code === '23505') { // Código de erro para Duplicidade no Postgres
-            return res.render("mensagem", { 
-                titulo: "Ops!", 
-                msg: `O número ${numero} já foi escolhido por outra pessoa.`,
-                tipo: "erro",
-                versiculo: null 
-            });
+        if (err.code === '23505') {
+            return res.render("mensagem", { titulo: "Ops!", msg: `O número ${numero} já foi escolhido por outra pessoa.`, tipo: "erro", versiculo: null });
         }
         console.error(err);
         return res.render("mensagem", { titulo: "Erro", msg: "Erro interno", tipo: "erro", versiculo: null });
@@ -144,7 +134,11 @@ app.post("/login", (req, res) => {
     const { senha } = req.body;
     if (senha === SENHA_ADMIN) {
         req.session.admin = true;
-        res.redirect("/admin");
+        // Força salvar no banco antes de redirecionar
+        req.session.save(err => {
+            if(err) console.log(err);
+            res.redirect("/admin");
+        });
     } else {
         res.render("login", { erro: "Senha incorreta!" });
     }
@@ -161,7 +155,9 @@ app.get("/admin", async (req, res) => {
         const { rows } = await sql`SELECT * FROM escolhas ORDER BY numero`;
         res.render("admin", { itens: rows });
     } catch (err) {
-        res.send("Erro no banco de dados.");
+        console.error(err);
+        // Agora mostra o erro REAL na tela
+        res.status(500).send("Erro detalhado do Banco: " + err.message);
     }
 });
 
@@ -170,24 +166,11 @@ app.get("/sortear", async (req, res) => {
     const hoje = new Date().toISOString().split("T")[0]; 
     if (hoje < DATA_SORTEIO) {
        const dataFormatada = DATA_SORTEIO.split('-').reverse().join('/');
-       return res.render("mensagem", { 
-           titulo: "Aguarde o Grande Dia!", 
-           msg: `O sorteio será realizado apenas no dia <b>${dataFormatada}</b>.`, 
-           tipo: "erro",
-           versiculo: null
-       });
+       return res.render("mensagem", { titulo: "Aguarde o Grande Dia!", msg: `O sorteio será realizado apenas no dia <b>${dataFormatada}</b>.`, tipo: "erro", versiculo: null });
     }
-
     try {
         const { rows } = await sql`SELECT * FROM escolhas`;
-        if (!rows || rows.length === 0) {
-            return res.render("mensagem", { 
-                titulo: "Lista Vazia", 
-                msg: "Ninguém participou da rifa ainda.", 
-                tipo: "erro", 
-                versiculo: null 
-            });
-        }
+        if (!rows || rows.length === 0) return res.render("mensagem", { titulo: "Lista Vazia", msg: "Ninguém participou da rifa ainda.", tipo: "erro", versiculo: null });
         const sorteado = rows[Math.floor(Math.random() * rows.length)];
         res.render("resultado", { sorteado });
     } catch (err) {
@@ -195,15 +178,10 @@ app.get("/sortear", async (req, res) => {
     }
 });
 
-// --- EXPORTAÇÃO PARA VERCEL ---
 export default app;
 
-// Só roda na porta 3000 se for no seu computador
 if (process.env.NODE_ENV !== 'production') {
     app.listen(3000, () => {
-        console.log("------------------------------------------------");
-        console.log(`Servidor rodando em: http://localhost:3000`);
-        console.log(`Chá de Fralda da: ${NOME_BEBE}`);
-        console.log("------------------------------------------------");
+        console.log("Servidor rodando em: http://localhost:3000");
     });
 }
