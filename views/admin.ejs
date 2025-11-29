@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Chá da Ester</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen p-4 md:p-8">
+
+    <% 
+        // Inicializa contadores para os novos tamanhos
+        let contagem = { 'RN': 0, 'P': 0, 'M': 0, 'G': 0, 'XG': 0, 'XXG': 0, 'OUTROS': 0 };
+        
+        itens.forEach(item => {
+            let tamanho = item.fralda ? item.fralda.trim().toUpperCase() : 'OUTROS';
+            
+            if (contagem.hasOwnProperty(tamanho)) {
+                contagem[tamanho]++;
+            } else {
+                contagem['OUTROS']++;
+            }
+        });
+    %>
+
+    <div class="max-w-7xl mx-auto">
+        
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <div>
+                <h1 class="text-3xl font-bold text-slate-800 flex items-center gap-2">
+                    <i class="ph ph-baby text-pink-500"></i> Controle de Participantes
+                </h1>
+                <p class="text-slate-500 text-sm mt-1">Gerencie as escolhas e exporte os dados.</p>
+            </div>
+            
+            <div class="flex gap-3">
+                <a href="/" class="px-4 py-2 text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition flex items-center gap-2 shadow-sm text-sm font-medium">
+                    <i class="ph ph-house"></i> Ir para o Site
+                </a>
+                <a href="/logout" class="px-4 py-2 text-white bg-slate-800 rounded-lg hover:bg-slate-900 transition flex items-center gap-2 shadow-lg shadow-slate-200 text-sm font-medium">
+                    <i class="ph ph-sign-out"></i> Sair
+                </a>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+            
+            <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 border-l-4 border-l-pink-500">
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total</span>
+                <div class="text-3xl font-bold text-slate-800 mt-1"><%= itens.length %></div>
+            </div>
+
+            <% const tamanhosCards = ['M', 'G', 'XG', 'XXG']; %>
+            <% tamanhosCards.forEach(tam => { %>
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col justify-between">
+                    <div class="flex justify-between items-start">
+                        <span class="text-xs font-bold text-slate-400 uppercase">Tam. <%= tam %></span>
+                        <% 
+                           let iconColor = 'text-slate-200';
+                           if(tam === 'M') iconColor = 'text-cyan-200';
+                           if(tam === 'G') iconColor = 'text-violet-200';
+                           if(tam === 'XG') iconColor = 'text-fuchsia-200';
+                           if(tam === 'XXG') iconColor = 'text-rose-200';
+                        %>
+                        <i class="ph ph-t-shirt <%= iconColor %> text-xl"></i>
+                    </div>
+                    <div class="text-2xl font-bold text-slate-700 mt-2"><%= contagem[tam] %></div>
+                </div>
+            <% }) %>
+        </div>
+
+        <div class="bg-white p-4 rounded-t-xl border-b border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4 shadow-sm">
+            
+            <div class="relative w-full md:w-96">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="ph ph-magnifying-glass text-slate-400"></i>
+                </div>
+                <input type="text" id="searchInput" class="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-lg leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-pink-500 focus:border-pink-500 sm:text-sm transition duration-150 ease-in-out" placeholder="Buscar por nome, número ou telefone...">
+            </div>
+
+            <button onclick="exportarExcel()" class="w-full md:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-md shadow-green-100 transition flex items-center justify-center gap-2 text-sm font-medium">
+                <i class="ph ph-microsoft-excel-logo text-lg"></i> Baixar Planilha
+            </button>
+        </div>
+
+        <div class="bg-white rounded-b-xl shadow-sm overflow-hidden border border-slate-200">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse" id="tabelaDados">
+                    <thead class="bg-slate-50 text-slate-600 text-xs uppercase font-bold tracking-wider border-b border-slate-200">
+                        <tr>
+                            <th class="p-4 w-20 text-center">Nº</th>
+                            <th class="p-4">Participante</th>
+                            <th class="p-4">Contato</th>
+                            <th class="p-4 text-center">Fralda</th>
+                            <th class="p-4 text-right">Data Registro</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-sm">
+                        <% itens.forEach(item => { %>
+                        <tr class="hover:bg-slate-50 transition duration-150 group">
+                            
+                            <td class="p-4 text-center">
+                                <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-pink-50 text-pink-600 font-bold text-lg group-hover:bg-pink-100 transition">
+                                    <%= item.numero %>
+                                </span>
+                            </td>
+
+                            <td class="p-4">
+                                <div class="font-semibold text-slate-800 text-base"><%= item.nome %></div>
+                            </td>
+
+                            <td class="p-4">
+                                <div class="flex items-center gap-2 text-slate-600">
+                                    <i class="ph ph-whatsapp-logo text-green-500 text-lg"></i>
+                                    <%= item.telefone %>
+                                </div>
+                            </td>
+
+                            <td class="p-4 text-center">
+                                <% 
+                                    // LOGICA DE CORES ATUALIZADA
+                                    let tamanho = item.fralda ? item.fralda.trim().toUpperCase() : '';
+                                    let classeCor = 'bg-slate-100 text-slate-600'; // Default
+
+                                    if(tamanho === 'P')   classeCor = 'bg-emerald-100 text-emerald-700'; // Verde Água
+                                    if(tamanho === 'M')   classeCor = 'bg-cyan-100 text-cyan-700';       // Azul Claro
+                                    if(tamanho === 'G')   classeCor = 'bg-violet-100 text-violet-700';   // Roxo/Violeta
+                                    if(tamanho === 'XG')  classeCor = 'bg-fuchsia-100 text-fuchsia-700'; // Magenta
+                                    if(tamanho === 'XXG') classeCor = 'bg-rose-100 text-rose-700';       // Rosa Escuro
+                                %>
+                                <span class="<%= classeCor %> px-3 py-1 rounded-full text-xs font-bold border border-black/5 shadow-sm min-w-[3rem] inline-block">
+                                    <%= item.fralda %>
+                                </span>
+                            </td>
+
+                            <td class="p-4 text-right text-slate-500 font-mono text-xs">
+                                <% 
+                                    const dataObj = new Date(item.data);
+                                    const dataFormatada = dataObj.toLocaleDateString('pt-BR');
+                                    const horaFormatada = dataObj.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                                %>
+                                <div><%= dataFormatada %></div>
+                                <div class="text-slate-400"><%= horaFormatada %></div>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div id="semResultados" class="hidden p-8 text-center text-slate-400">
+                <i class="ph ph-magnifying-glass text-4xl mb-2 opacity-50"></i>
+                <p>Nenhum registro encontrado.</p>
+            </div>
+        </div>
+        
+        <div class="text-center mt-8 text-slate-400 text-xs">
+            &copy; 2026 Chá da Ester
+        </div>
+    </div>
+
+    <script>
+        // Lógica de Busca e Exportação (Mantida igual para garantir funcionamento)
+        const searchInput = document.getElementById('searchInput');
+        const tableRows = document.querySelectorAll('tbody tr');
+        const noResultsMsg = document.getElementById('semResultados');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            let hasVisibleRow = false;
+            tableRows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                if (text.includes(term)) {
+                    row.style.display = '';
+                    hasVisibleRow = true;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            if (hasVisibleRow) noResultsMsg.classList.add('hidden');
+            else noResultsMsg.classList.remove('hidden');
+        });
+
+        function exportarExcel() {
+            const wb = XLSX.utils.book_new();
+            const tabela = document.getElementById("tabelaDados");
+            const ws = XLSX.utils.table_to_sheet(tabela);
+            XLSX.utils.book_append_sheet(wb, ws, "Participantes");
+            XLSX.writeFile(wb, "Cha_da_Ester_Lista.xlsx");
+        }
+    </script>
+</body>
+</html>

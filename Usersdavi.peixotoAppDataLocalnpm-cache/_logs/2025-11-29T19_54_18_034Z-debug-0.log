@@ -1,0 +1,518 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\davi.peixoto\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.3.0
+2 info using node@v22.18.0
+3 silly config load:file:C:\Users\davi.peixoto\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:C:\SERVIDOR\app-frauda\.npmrc
+5 silly config load:file:C:\Users\davi.peixoto\.npmrc
+6 silly config load:file:C:\Users\davi.peixoto\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm uninstall sqlite3
+8 verbose argv "uninstall" "sqlite3"
+9 verbose logfile logs-max:10 dir:C:\SERVIDOR\app-frauda\Usersdavi.peixotoAppDataLocalnpm-cache\_logs\2025-11-29T19_54_18_034Z-
+10 verbose logfile C:\SERVIDOR\app-frauda\Usersdavi.peixotoAppDataLocalnpm-cache\_logs\2025-11-29T19_54_18_034Z-debug-0.log
+11 silly logfile start cleaning logs, removing 1 files
+12 silly packumentCache heap:4345298944 maxSize:1086324736 maxEntrySize:543162368
+13 silly logfile done cleaning log files
+14 silly idealTree buildDeps
+15 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\@gar\\promisify' ]
+16 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\@npmcli\\fs' ]
+17 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\@npmcli\\move-file' ]
+18 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\@tootallnate\\once' ]
+19 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\abbrev' ]
+20 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\agent-base' ]
+21 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\agentkeepalive' ]
+22 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\aggregate-error' ]
+23 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\ansi-regex' ]
+24 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\aproba' ]
+25 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\are-we-there-yet' ]
+26 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\base64-js' ]
+27 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\bindings' ]
+28 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\bl' ]
+29 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\buffer' ]
+30 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\cacache' ]
+31 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\chownr' ]
+32 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\clean-stack' ]
+33 silly reify mark retired [
+33 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\color-support',
+33 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\color-support',
+33 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\color-support.cmd',
+33 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\color-support.ps1'
+33 silly reify ]
+34 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\concat-map' ]
+35 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\console-control-strings' ]
+36 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\decompress-response' ]
+37 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\deep-extend' ]
+38 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\delegates' ]
+39 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\detect-libc' ]
+40 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\emoji-regex' ]
+41 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\encoding' ]
+42 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\end-of-stream' ]
+43 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\env-paths' ]
+44 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\err-code' ]
+45 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\expand-template' ]
+46 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\file-uri-to-path' ]
+47 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\fs-constants' ]
+48 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\fs-minipass' ]
+49 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\fs.realpath' ]
+50 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\gauge' ]
+51 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\github-from-package' ]
+52 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\glob' ]
+53 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\graceful-fs' ]
+54 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\has-unicode' ]
+55 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\http-cache-semantics' ]
+56 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\http-proxy-agent' ]
+57 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\https-proxy-agent' ]
+58 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\humanize-ms' ]
+59 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\ieee754' ]
+60 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\imurmurhash' ]
+61 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\indent-string' ]
+62 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\infer-owner' ]
+63 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\inflight' ]
+64 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\ini' ]
+65 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\ip-address' ]
+66 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\is-fullwidth-code-point' ]
+67 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\is-lambda' ]
+68 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\isexe' ]
+69 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\lru-cache' ]
+70 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\make-fetch-happen' ]
+71 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\mimic-response' ]
+72 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\minimist' ]
+73 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass' ]
+74 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-collect' ]
+75 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-fetch' ]
+76 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-flush' ]
+77 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-pipeline' ]
+78 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-sized' ]
+79 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\minizlib' ]
+80 silly reify mark retired [
+80 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\mkdirp',
+80 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\mkdirp',
+80 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\mkdirp.cmd',
+80 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\mkdirp.ps1'
+80 silly reify ]
+81 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\mkdirp-classic' ]
+82 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\napi-build-utils' ]
+83 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\node-abi' ]
+84 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\node-addon-api' ]
+85 silly reify mark retired [
+85 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\node-gyp',
+85 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-gyp',
+85 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-gyp.cmd',
+85 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-gyp.ps1'
+85 silly reify ]
+86 silly reify mark retired [
+86 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\nopt',
+86 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\nopt',
+86 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\nopt.cmd',
+86 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\nopt.ps1'
+86 silly reify ]
+87 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\npmlog' ]
+88 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\once' ]
+89 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\p-map' ]
+90 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\path-is-absolute' ]
+91 silly reify mark retired [
+91 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\prebuild-install',
+91 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\prebuild-install',
+91 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\prebuild-install.cmd',
+91 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\prebuild-install.ps1'
+91 silly reify ]
+92 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\promise-inflight' ]
+93 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\promise-retry' ]
+94 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\pump' ]
+95 silly reify mark retired [
+95 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\rc',
+95 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rc',
+95 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rc.cmd',
+95 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rc.ps1'
+95 silly reify ]
+96 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\readable-stream' ]
+97 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\retry' ]
+98 silly reify mark retired [
+98 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\rimraf',
+98 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rimraf',
+98 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rimraf.cmd',
+98 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rimraf.ps1'
+98 silly reify ]
+99 silly reify mark retired [
+99 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\semver',
+99 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\semver',
+99 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\semver.cmd',
+99 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\semver.ps1'
+99 silly reify ]
+100 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\set-blocking' ]
+101 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\signal-exit' ]
+102 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\simple-concat' ]
+103 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\simple-get' ]
+104 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\smart-buffer' ]
+105 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\socks' ]
+106 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\socks-proxy-agent' ]
+107 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\sqlite3' ]
+108 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\ssri' ]
+109 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\string_decoder' ]
+110 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\string-width' ]
+111 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\strip-ansi' ]
+112 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\strip-json-comments' ]
+113 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\tar' ]
+114 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\tar-fs' ]
+115 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\tar-stream' ]
+116 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\tunnel-agent' ]
+117 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\unique-filename' ]
+118 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\unique-slug' ]
+119 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\util-deprecate' ]
+120 silly reify mark retired [
+120 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\which',
+120 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-which',
+120 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-which.cmd',
+120 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-which.ps1'
+120 silly reify ]
+121 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\wide-align' ]
+122 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\wrappy' ]
+123 silly reify mark retired [ 'C:\\SERVIDOR\\app-frauda\\node_modules\\yallist' ]
+124 silly reify moves {
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\@gar\\promisify': 'C:\\SERVIDOR\\app-frauda\\node_modules\\@gar\\.promisify-gLimRsGF',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\@npmcli\\fs': 'C:\\SERVIDOR\\app-frauda\\node_modules\\@npmcli\\.fs-uAxe8BHg',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\@npmcli\\move-file': 'C:\\SERVIDOR\\app-frauda\\node_modules\\@npmcli\\.move-file-d1n2kFEu',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\@tootallnate\\once': 'C:\\SERVIDOR\\app-frauda\\node_modules\\@tootallnate\\.once-13tp5Sku',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\abbrev': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.abbrev-82lb8Ahn',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\agent-base': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.agent-base-FOWqYMrT',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\agentkeepalive': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.agentkeepalive-rD4KV7ww',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\aggregate-error': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.aggregate-error-sYLLvqCj',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\ansi-regex': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.ansi-regex-v8B3ZQnW',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\aproba': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.aproba-B390g49Z',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\are-we-there-yet': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.are-we-there-yet-6mb0wUaX',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\base64-js': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.base64-js-ygBJT59I',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\bindings': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bindings-QWPfFc2q',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\bl': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bl-Q6cimK6J',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\buffer': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.buffer-knQ1ZshZ',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\cacache': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.cacache-ohCgqxzf',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\chownr': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.chownr-7jyI6zbj',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\clean-stack': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.clean-stack-FMmSvySg',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\color-support': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.color-support-Ck1xBy5H',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\color-support': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.color-support-FVwrQh3Y',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\color-support.cmd': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.color-support.cmd-dFjjT4O4',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\color-support.ps1': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.color-support.ps1-rk2skRj1',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\concat-map': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.concat-map-m950u9SJ',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\console-control-strings': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.console-control-strings-NLoPpBHn',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\decompress-response': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.decompress-response-6LwLg125',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\deep-extend': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.deep-extend-qA4Um2J2',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\delegates': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.delegates-13qTKJcO',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\detect-libc': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.detect-libc-bKKaRcIz',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\emoji-regex': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.emoji-regex-5l1oxTBi',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\encoding': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.encoding-mkYrMIqz',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\end-of-stream': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.end-of-stream-eFDpLnDM',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\env-paths': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.env-paths-5aoPNIl6',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\err-code': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.err-code-ByKm8Ihe',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\expand-template': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.expand-template-DoavPVgj',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\file-uri-to-path': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.file-uri-to-path-PVY8uhsF',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\fs-constants': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.fs-constants-GjmMxDWl',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\fs-minipass': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.fs-minipass-f9vwvayR',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\fs.realpath': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.fs.realpath-YzcaRmbC',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\gauge': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.gauge-fpqdxWXI',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\github-from-package': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.github-from-package-usNclnu9',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\glob': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.glob-Q1PnvZsp',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\graceful-fs': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.graceful-fs-rPE6honF',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\has-unicode': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.has-unicode-lckk9gGF',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\http-cache-semantics': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.http-cache-semantics-l9rZzytk',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\http-proxy-agent': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.http-proxy-agent-N7PBjdCf',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\https-proxy-agent': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.https-proxy-agent-isZGiWyg',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\humanize-ms': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.humanize-ms-fKee5owa',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\ieee754': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.ieee754-aOGxPuLz',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\imurmurhash': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.imurmurhash-N5tjWx0j',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\indent-string': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.indent-string-2UlxvdBg',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\infer-owner': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.infer-owner-aL8nVlVT',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\inflight': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.inflight-OyNtGlYz',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\ini': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.ini-oolKFO1M',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\ip-address': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.ip-address-LlcfaClC',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\is-fullwidth-code-point': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.is-fullwidth-code-point-msvwPQYS',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\is-lambda': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.is-lambda-NZqMNRx6',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\isexe': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.isexe-hepmdv8y',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\lru-cache': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.lru-cache-kjG50kIa',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\make-fetch-happen': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.make-fetch-happen-l0bhsao1',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\mimic-response': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.mimic-response-xKyxmHnz',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\minimist': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.minimist-MSzQ1NTi',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.minipass-2FTbqtL1',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-collect': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.minipass-collect-ruNq1Lyl',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-fetch': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.minipass-fetch-he4VVd58',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-flush': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.minipass-flush-P8LAHJUh',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-pipeline': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.minipass-pipeline-3xup7B0O',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\minipass-sized': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.minipass-sized-FVRmBtXW',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\minizlib': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.minizlib-kIIm5sIL',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\mkdirp': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.mkdirp-eaSz9Njt',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\mkdirp': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.mkdirp-oM9EDAu3',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\mkdirp.cmd': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.mkdirp.cmd-Mjlg1sXq',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\mkdirp.ps1': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.mkdirp.ps1-XiB4ek8c',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\mkdirp-classic': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.mkdirp-classic-VqrFEHad',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\napi-build-utils': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.napi-build-utils-kTZinVQu',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\node-abi': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.node-abi-pri5GWqv',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\node-addon-api': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.node-addon-api-bQgWjaLy',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\node-gyp': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.node-gyp-AfeimCGA',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-gyp': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.node-gyp-4qsK0qNe',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-gyp.cmd': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.node-gyp.cmd-8NOXxVZB',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-gyp.ps1': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.node-gyp.ps1-aHCPr2BJ',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\nopt': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.nopt-nAlL0gVo',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\nopt': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.nopt-AI1cnMmP',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\nopt.cmd': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.nopt.cmd-AIzIvib9',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\nopt.ps1': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.nopt.ps1-za9kR9pH',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\npmlog': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.npmlog-rKRfEjJG',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\once': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.once-XKoEECvl',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\p-map': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.p-map-2cKrQt0k',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\path-is-absolute': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.path-is-absolute-w8AQLVwj',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\prebuild-install': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.prebuild-install-ImvRzMIk',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\prebuild-install': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.prebuild-install-chotwxnp',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\prebuild-install.cmd': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.prebuild-install.cmd-LyfwtM33',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\prebuild-install.ps1': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.prebuild-install.ps1-il6jZCr1',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\promise-inflight': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.promise-inflight-Ue28uOsi',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\promise-retry': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.promise-retry-3oqv2Mew',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\pump': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.pump-BqILUMgT',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\rc': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.rc-rVFw5Hsv',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rc': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.rc-gcC5qlx8',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rc.cmd': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.rc.cmd-1zcTgO26',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rc.ps1': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.rc.ps1-AfIQsNzr',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\readable-stream': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.readable-stream-P4YnlsH2',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\retry': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.retry-t2E5usvu',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\rimraf': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.rimraf-QAdkPFqp',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rimraf': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.rimraf-DWYuKNKv',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rimraf.cmd': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.rimraf.cmd-yrmN2gHF',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\rimraf.ps1': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.rimraf.ps1-bzeVXt1S',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\semver': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.semver-5DGElXM3',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\semver': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.semver-qvpr6q7F',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\semver.cmd': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.semver.cmd-oMbrdlEp',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\semver.ps1': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.semver.ps1-Y3ByvcEh',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\set-blocking': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.set-blocking-biIEfvzL',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\signal-exit': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.signal-exit-dTjjoSho',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\simple-concat': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.simple-concat-YSmSMgMs',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\simple-get': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.simple-get-cPdKBxrC',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\smart-buffer': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.smart-buffer-zmxrs0xZ',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\socks': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.socks-IvDMmcJS',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\socks-proxy-agent': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.socks-proxy-agent-UtlNnZWo',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\sqlite3': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.sqlite3-xyUj3agA',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\ssri': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.ssri-CtMmWFhx',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\string_decoder': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.string_decoder-NbGcL14X',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\string-width': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.string-width-noGnFQ2M',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\strip-ansi': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.strip-ansi-GmuHRLFn',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\strip-json-comments': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.strip-json-comments-dN5Kw7YB',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\tar': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.tar-FDstcvLk',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\tar-fs': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.tar-fs-5RjFHlpk',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\tar-stream': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.tar-stream-8kJ5HFuf',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\tunnel-agent': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.tunnel-agent-yVKVKu1O',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\unique-filename': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.unique-filename-XMu9tkdE',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\unique-slug': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.unique-slug-mViSzYsm',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\util-deprecate': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.util-deprecate-hK9fxkO0',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\which': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.which-zdaaRXFR',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-which': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.node-which-8veubHP9',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-which.cmd': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.node-which.cmd-WK1J1AuX',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\node-which.ps1': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.bin\\.node-which.ps1-v535tgqB',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\wide-align': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.wide-align-8v5kRHNi',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\wrappy': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.wrappy-HNcStyXB',
+124 silly reify   'C:\\SERVIDOR\\app-frauda\\node_modules\\yallist': 'C:\\SERVIDOR\\app-frauda\\node_modules\\.yallist-UtrSLIif'
+124 silly reify }
+125 silly audit bulk request {
+125 silly audit   accepts: [ '1.3.8' ],
+125 silly audit   debug: [ '2.6.9' ],
+125 silly audit   ms: [ '2.0.0', '2.1.3' ],
+125 silly audit   'array-flatten': [ '1.1.1' ],
+125 silly audit   async: [ '3.2.6' ],
+125 silly audit   'balanced-match': [ '1.0.2' ],
+125 silly audit   'body-parser': [ '1.20.3' ],
+125 silly audit   'brace-expansion': [ '2.0.2' ],
+125 silly audit   bytes: [ '3.1.2' ],
+125 silly audit   'call-bind-apply-helpers': [ '1.0.2' ],
+125 silly audit   'call-bound': [ '1.0.4' ],
+125 silly audit   'content-disposition': [ '0.5.4' ],
+125 silly audit   'content-type': [ '1.0.5' ],
+125 silly audit   cookie: [ '0.7.1', '0.7.2' ],
+125 silly audit   'cookie-signature': [ '1.0.6', '1.0.7' ],
+125 silly audit   depd: [ '2.0.0' ],
+125 silly audit   destroy: [ '1.2.0' ],
+125 silly audit   'dunder-proto': [ '1.0.1' ],
+125 silly audit   'ee-first': [ '1.1.1' ],
+125 silly audit   ejs: [ '3.1.10' ],
+125 silly audit   encodeurl: [ '2.0.0', '1.0.2' ],
+125 silly audit   'iconv-lite': [ '0.4.24' ],
+125 silly audit   'es-define-property': [ '1.0.1' ],
+125 silly audit   'es-errors': [ '1.3.0' ],
+125 silly audit   'es-object-atoms': [ '1.1.1' ],
+125 silly audit   'escape-html': [ '1.0.3' ],
+125 silly audit   etag: [ '1.8.1' ],
+125 silly audit   express: [ '4.21.2' ],
+125 silly audit   'express-session': [ '1.18.2' ],
+125 silly audit   filelist: [ '1.0.4' ],
+125 silly audit   finalhandler: [ '1.3.1' ],
+125 silly audit   forwarded: [ '0.2.0' ],
+125 silly audit   fresh: [ '0.5.2' ],
+125 silly audit   'function-bind': [ '1.1.2' ],
+125 silly audit   'get-intrinsic': [ '1.3.0' ],
+125 silly audit   'get-proto': [ '1.0.1' ],
+125 silly audit   minimatch: [ '5.1.6' ],
+125 silly audit   gopd: [ '1.2.0' ],
+125 silly audit   'has-symbols': [ '1.1.0' ],
+125 silly audit   hasown: [ '2.0.2' ],
+125 silly audit   'http-errors': [ '2.0.0' ],
+125 silly audit   inherits: [ '2.0.4' ],
+125 silly audit   'ipaddr.js': [ '1.9.1' ],
+125 silly audit   jake: [ '10.9.4' ],
+125 silly audit   'math-intrinsics': [ '1.1.0' ],
+125 silly audit   'media-typer': [ '0.3.0' ],
+125 silly audit   'merge-descriptors': [ '1.0.3' ],
+125 silly audit   methods: [ '1.1.2' ],
+125 silly audit   mime: [ '1.6.0' ],
+125 silly audit   'mime-db': [ '1.52.0' ],
+125 silly audit   'mime-types': [ '2.1.35' ],
+125 silly audit   negotiator: [ '0.6.3' ],
+125 silly audit   'object-inspect': [ '1.13.4' ],
+125 silly audit   'on-finished': [ '2.4.1' ],
+125 silly audit   'on-headers': [ '1.1.0' ],
+125 silly audit   parseurl: [ '1.3.3' ],
+125 silly audit   'path-to-regexp': [ '0.1.12' ],
+125 silly audit   picocolors: [ '1.1.1' ],
+125 silly audit   'proxy-addr': [ '2.0.7' ],
+125 silly audit   qs: [ '6.13.0' ],
+125 silly audit   'random-bytes': [ '1.0.0' ],
+125 silly audit   'range-parser': [ '1.2.1' ],
+125 silly audit   'raw-body': [ '2.5.2' ],
+125 silly audit   'safe-buffer': [ '5.2.1' ],
+125 silly audit   'safer-buffer': [ '2.1.2' ],
+125 silly audit   send: [ '0.19.0' ],
+125 silly audit   'serve-static': [ '1.16.2' ],
+125 silly audit   setprototypeof: [ '1.2.0' ],
+125 silly audit   'side-channel': [ '1.1.0' ],
+125 silly audit   'side-channel-list': [ '1.0.0' ],
+125 silly audit   'side-channel-map': [ '1.0.1' ],
+125 silly audit   'side-channel-weakmap': [ '1.0.2' ],
+125 silly audit   statuses: [ '2.0.1' ],
+125 silly audit   toidentifier: [ '1.0.1' ],
+125 silly audit   'type-is': [ '1.6.18' ],
+125 silly audit   'uid-safe': [ '2.1.5' ],
+125 silly audit   unpipe: [ '1.0.0' ],
+125 silly audit   'utils-merge': [ '1.0.1' ],
+125 silly audit   vary: [ '1.1.2' ]
+125 silly audit }
+126 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 510ms
+127 silly audit report {}
+128 silly REMOVE node_modules/yallist
+129 silly REMOVE node_modules/wrappy
+130 silly REMOVE node_modules/wide-align
+131 silly REMOVE node_modules/which
+132 silly REMOVE node_modules/util-deprecate
+133 silly REMOVE node_modules/unique-slug
+134 silly REMOVE node_modules/unique-filename
+135 silly REMOVE node_modules/tunnel-agent
+136 silly REMOVE node_modules/tar-stream
+137 silly REMOVE node_modules/tar-fs
+138 silly REMOVE node_modules/tar-fs/node_modules/chownr
+139 silly REMOVE node_modules/tar
+140 silly REMOVE node_modules/tar/node_modules/minipass
+141 silly REMOVE node_modules/strip-json-comments
+142 silly REMOVE node_modules/strip-ansi
+143 silly REMOVE node_modules/string-width
+144 silly REMOVE node_modules/string_decoder
+145 silly REMOVE node_modules/ssri
+146 silly REMOVE node_modules/sqlite3
+147 silly REMOVE node_modules/socks-proxy-agent
+148 silly REMOVE node_modules/socks-proxy-agent/node_modules/ms
+149 silly REMOVE node_modules/socks-proxy-agent/node_modules/debug
+150 silly REMOVE node_modules/socks
+151 silly REMOVE node_modules/smart-buffer
+152 silly REMOVE node_modules/simple-get
+153 silly REMOVE node_modules/simple-concat
+154 silly REMOVE node_modules/signal-exit
+155 silly REMOVE node_modules/set-blocking
+156 silly REMOVE node_modules/semver
+157 silly REMOVE node_modules/rimraf
+158 silly REMOVE node_modules/retry
+159 silly REMOVE node_modules/readable-stream
+160 silly REMOVE node_modules/rc
+161 silly REMOVE node_modules/pump
+162 silly REMOVE node_modules/promise-retry
+163 silly REMOVE node_modules/promise-inflight
+164 silly REMOVE node_modules/prebuild-install
+165 silly REMOVE node_modules/path-is-absolute
+166 silly REMOVE node_modules/p-map
+167 silly REMOVE node_modules/once
+168 silly REMOVE node_modules/npmlog
+169 silly REMOVE node_modules/nopt
+170 silly REMOVE node_modules/node-gyp
+171 silly REMOVE node_modules/node-addon-api
+172 silly REMOVE node_modules/node-abi
+173 silly REMOVE node_modules/napi-build-utils
+174 silly REMOVE node_modules/mkdirp-classic
+175 silly REMOVE node_modules/mkdirp
+176 silly REMOVE node_modules/minizlib
+177 silly REMOVE node_modules/minipass-sized
+178 silly REMOVE node_modules/minipass-pipeline
+179 silly REMOVE node_modules/minipass-flush
+180 silly REMOVE node_modules/minipass-fetch
+181 silly REMOVE node_modules/minipass-collect
+182 silly REMOVE node_modules/minipass
+183 silly REMOVE node_modules/minimist
+184 silly REMOVE node_modules/mimic-response
+185 silly REMOVE node_modules/make-fetch-happen
+186 silly REMOVE node_modules/lru-cache
+187 silly REMOVE node_modules/isexe
+188 silly REMOVE node_modules/is-lambda
+189 silly REMOVE node_modules/is-fullwidth-code-point
+190 silly REMOVE node_modules/ip-address
+191 silly REMOVE node_modules/ini
+192 silly REMOVE node_modules/inflight
+193 silly REMOVE node_modules/infer-owner
+194 silly REMOVE node_modules/indent-string
+195 silly REMOVE node_modules/imurmurhash
+196 silly REMOVE node_modules/ieee754
+197 silly REMOVE node_modules/humanize-ms
+198 silly REMOVE node_modules/https-proxy-agent
+199 silly REMOVE node_modules/https-proxy-agent/node_modules/ms
+200 silly REMOVE node_modules/https-proxy-agent/node_modules/debug
+201 silly REMOVE node_modules/http-proxy-agent
+202 silly REMOVE node_modules/http-proxy-agent/node_modules/ms
+203 silly REMOVE node_modules/http-proxy-agent/node_modules/debug
+204 silly REMOVE node_modules/http-cache-semantics
+205 silly REMOVE node_modules/has-unicode
+206 silly REMOVE node_modules/graceful-fs
+207 silly REMOVE node_modules/glob
+208 silly REMOVE node_modules/glob/node_modules/minimatch
+209 silly REMOVE node_modules/glob/node_modules/brace-expansion
+210 silly REMOVE node_modules/github-from-package
+211 silly REMOVE node_modules/gauge
+212 silly REMOVE node_modules/fs.realpath
+213 silly REMOVE node_modules/fs-minipass
+214 silly REMOVE node_modules/fs-constants
+215 silly REMOVE node_modules/file-uri-to-path
+216 silly REMOVE node_modules/expand-template
+217 silly REMOVE node_modules/err-code
+218 silly REMOVE node_modules/env-paths
+219 silly REMOVE node_modules/end-of-stream
+220 silly REMOVE node_modules/encoding
+221 silly REMOVE node_modules/encoding/node_modules/iconv-lite
+222 silly REMOVE node_modules/emoji-regex
+223 silly REMOVE node_modules/detect-libc
+224 silly REMOVE node_modules/delegates
+225 silly REMOVE node_modules/deep-extend
+226 silly REMOVE node_modules/decompress-response
+227 silly REMOVE node_modules/console-control-strings
+228 silly REMOVE node_modules/concat-map
+229 silly REMOVE node_modules/color-support
+230 silly REMOVE node_modules/clean-stack
+231 silly REMOVE node_modules/chownr
+232 silly REMOVE node_modules/cacache
+233 silly REMOVE node_modules/buffer
+234 silly REMOVE node_modules/bl
+235 silly REMOVE node_modules/bindings
+236 silly REMOVE node_modules/base64-js
+237 silly REMOVE node_modules/are-we-there-yet
+238 silly REMOVE node_modules/aproba
+239 silly REMOVE node_modules/ansi-regex
+240 silly REMOVE node_modules/aggregate-error
+241 silly REMOVE node_modules/agentkeepalive
+242 silly REMOVE node_modules/agent-base
+243 silly REMOVE node_modules/agent-base/node_modules/ms
+244 silly REMOVE node_modules/agent-base/node_modules/debug
+245 silly REMOVE node_modules/abbrev
+246 silly REMOVE node_modules/@tootallnate/once
+247 silly REMOVE node_modules/@npmcli/move-file
+248 silly REMOVE node_modules/@npmcli/fs
+249 silly REMOVE node_modules/@gar/promisify
+250 verbose cwd C:\SERVIDOR\app-frauda
+251 verbose os Windows_NT 10.0.22631
+252 verbose node v22.18.0
+253 verbose npm  v11.3.0
+254 verbose exit 0
+255 info ok

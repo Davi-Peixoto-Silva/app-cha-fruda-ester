@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chá de Fralda da Ester</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+        body { font-family: 'Poppins', sans-serif; }
+        .glass-effect { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.5); }
+        .timer-box { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-50 via-white to-pink-100 min-h-screen text-slate-800 pb-10">
+
+    <header class="relative bg-gradient-to-r from-pink-500 to-rose-400 text-white pt-10 pb-20 shadow-xl overflow-hidden">
+        <div class="absolute top-0 left-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-x-10 -translate-y-10"></div>
+        <div class="absolute bottom-0 right-0 w-48 h-48 bg-white opacity-10 rounded-full translate-x-10 translate-y-10"></div>
+
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-green-400 text-green-900 px-4 py-1 rounded-full text-sm font-bold mb-4 shadow-lg transform rotate-1 border-2 border-white">
+                🎉 Participação 100% Gratuita
+            </div>
+            
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-2 tracking-tight">
+                Chá de Fralda da Ester
+            </h1>
+            <p class="text-pink-100 text-lg max-w-xl mx-auto mb-8">
+                Escolha seu número da sorte grátis e concorra ao brinde especial!
+            </p>
+
+            <div class="glass-effect rounded-2xl p-6 mx-auto max-w-3xl shadow-2xl transform translate-y-8 text-slate-800">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="text-left flex-1">
+                        <h2 class="text-xs font-bold text-pink-500 uppercase tracking-wider mb-1">Grande Sorteio</h2>
+                        <h3 class="text-2xl font-bold text-slate-900">🎁 Brinde Surpresa</h3>
+                        <p class="text-sm text-slate-500 mt-1">Data: <span class="font-bold text-slate-800">30 de Março de 2026</span></p>
+                    </div>
+                    <div class="hidden md:block w-px h-16 bg-slate-200"></div>
+                    <div class="flex gap-3 text-center">
+                        <div class="timer-box p-3 rounded-lg w-16 shadow-sm border border-pink-100">
+                            <span id="dias" class="block text-xl font-bold text-pink-600">00</span>
+                            <span class="text-[10px] text-pink-400 uppercase font-bold">Dias</span>
+                        </div>
+                        <div class="timer-box p-3 rounded-lg w-16 shadow-sm border border-pink-100">
+                            <span id="horas" class="block text-xl font-bold text-pink-600">00</span>
+                            <span class="text-[10px] text-pink-400 uppercase font-bold">Hr</span>
+                        </div>
+                        <div class="timer-box p-3 rounded-lg w-16 shadow-sm border border-pink-100">
+                            <span id="minutos" class="block text-xl font-bold text-pink-600">00</span>
+                            <span class="text-[10px] text-pink-400 uppercase font-bold">Min</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="h-16"></div>
+
+    <section class="container mx-auto px-4 max-w-3xl mt-12 mb-8">
+        <div class="flex justify-between items-end mb-2 px-1">
+            <span class="text-sm font-semibold text-slate-600">Números Preenchidos</span>
+            <span class="text-sm font-bold text-pink-600"><%= progresso %>% Reservado</span>
+        </div>
+        <div class="w-full bg-slate-200 rounded-full h-3 overflow-hidden shadow-inner">
+            <div class="bg-gradient-to-r from-pink-400 to-rose-500 h-3 rounded-full transition-all duration-1000 relative" style="width: <%= progresso %>%">
+                <div class="absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12 animate-shimmer"></div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container mx-auto p-4 max-w-5xl">
+        <div class="bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-100">
+            <h3 class="text-xl font-bold text-slate-700 mb-6 flex items-center gap-2">
+                <span class="bg-pink-100 text-pink-600 w-8 h-8 flex items-center justify-center rounded-full text-sm">#</span>
+                Escolha seu número
+            </h3>
+            
+            <div class="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-3">
+                <% for (let i = 1; i <= 300; i++) { %>
+                    <% if (ocupados.includes(i)) { %>
+                        <div class="aspect-square flex items-center justify-center bg-slate-100 text-slate-400 rounded-xl cursor-not-allowed text-xs font-bold border border-slate-100" title="Reservado por <%= ocupadosNomes ? ocupadosNomes[i] : 'Amigo' %>">
+                            <div class="text-center">
+                                <span class="block line-through opacity-50"><%= i %></span>
+                                <span class="text-[9px] block">Ocupado</span>
+                            </div>
+                        </div>
+                    <% } else { %>
+                        <button onclick="abrirModal(<%= i %>)" class="group aspect-square flex flex-col items-center justify-center bg-white border-2 border-pink-100 text-slate-600 rounded-xl hover:border-pink-500 hover:bg-pink-500 hover:text-white transition-all duration-200 shadow-sm hover:shadow-lg hover:-translate-y-1 relative overflow-hidden">
+                            <span class="font-bold text-lg z-10"><%= i %></span>
+                            <span class="text-[9px] text-pink-300 group-hover:text-pink-200 z-10">Livre</span>
+                        </button>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    </main>
+
+    <div id="modalRegistro" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md p-8 relative scale-95 transform transition-all duration-300" id="modalContent">
+            
+            <button onclick="fecharModal()" class="absolute top-4 right-4 bg-slate-100 text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full flex items-center justify-center transition">✕</button>
+
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-pink-100 text-pink-600 rounded-full mb-3 text-2xl font-bold shadow-inner">
+                    <span id="numDisplay">00</span>
+                </div>
+                <h2 class="text-2xl font-bold text-slate-800">Participar do Sorteio</h2>
+                <p class="text-slate-500 text-sm">É gratuito! Preencha para reservar.</p>
+            </div>
+
+            <form method="POST" action="/registrar" class="space-y-4">
+                <input type="hidden" name="numero" id="inputNumero">
+
+                <div class="group">
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Seu Nome</label>
+                    <input type="text" name="nome" required class="w-full rounded-lg border-slate-200 bg-slate-50 focus:bg-white focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all p-3 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Telefone (WhatsApp)</label>
+                    <input type="tel" name="telefone" id="telefone" required 
+                           maxlength="15"
+                           placeholder="(XX) XXXXX-XXXX" 
+                           oninput="mascaraTelefone(this)"
+                           class="w-full rounded-lg border-slate-200 bg-slate-50 focus:bg-white focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all p-3 outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase mb-1">Sugestão de Fralda (Opcional)</label>
+                    <div class="relative">
+                        <select name="fralda" class="w-full rounded-lg border-slate-200 bg-slate-50 focus:bg-white focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 transition-all p-3 outline-none appearance-none cursor-pointer">
+                            <option>M</option>
+                            <option>G</option>
+                            <option>XG</option>
+                            <option>XXG</option>
+                        </select>
+                        <div class="absolute right-3 top-3.5 text-slate-400 pointer-events-none">▼</div>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-rose-500 text-white py-4 rounded-xl font-bold hover:shadow-lg hover:shadow-pink-500/30 transform hover:-translate-y-0.5 transition-all mt-2">
+                    Confirmar Participação ➜
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="text-center text-slate-400 text-sm mt-12 pb-8">
+        <p class="mb-2">Feito com ❤️ para a Ester</p>
+        
+        <a href="/admin" class="inline-flex items-center gap-1 text-slate-300 hover:text-pink-500 transition-colors text-xs py-2 px-4 rounded-full hover:bg-pink-50">
+            🔒 Área Administrativa
+        </a>
+    </footer>
+
+    <script>
+        // 1. MÁSCARA DE TELEFONE (NOVO)
+        function mascaraTelefone(input) {
+            var v = input.value;
+            v = v.replace(/\D/g, ""); // Remove tudo o que não é dígito
+            v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); // Coloca parênteses em volta dos dois primeiros dígitos
+            v = v.replace(/(\d)(\d{4})$/, "$1-$2"); // Coloca hífen entre o quarto e o quinto dígitos
+            input.value = v;
+        }
+
+        // 2. RELÓGIO
+        const dataSorteio = new Date("2026-03-30T00:00:00").getTime();
+        const x = setInterval(function() {
+            const agora = new Date().getTime();
+            const distancia = dataSorteio - agora;
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById("dias").innerText = dias < 10 ? "0" + dias : dias;
+            document.getElementById("horas").innerText = horas < 10 ? "0" + horas : horas;
+            document.getElementById("minutos").innerText = minutos < 10 ? "0" + minutos : minutos;
+        }, 1000);
+
+        // 3. CONFETES
+        window.addEventListener('load', () => {
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+        });
+
+        // 4. MODAL
+        const modal = document.getElementById('modalRegistro');
+        const modalContent = document.getElementById('modalContent');
+        function abrirModal(numero) {
+            document.getElementById('inputNumero').value = numero;
+            document.getElementById('numDisplay').innerText = numero;
+            modal.classList.remove('hidden');
+            setTimeout(() => { modalContent.classList.remove('scale-95'); modalContent.classList.add('scale-100'); }, 10);
+        }
+        function fecharModal() {
+            modalContent.classList.remove('scale-100'); modalContent.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); }, 200);
+        }
+        modal.addEventListener('click', (e) => { if (e.target === modal) fecharModal(); });
+    </script>
+
+    <style>
+        @keyframes shimmer { 0% { transform: translateX(-150%) skewX(-12deg); } 100% { transform: translateX(150%) skewX(-12deg); } }
+        .animate-shimmer { animation: shimmer 2.5s infinite; }
+    </style>
+</body>
+</html>

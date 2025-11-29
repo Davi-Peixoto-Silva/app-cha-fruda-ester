@@ -1,0 +1,12 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Users\davi.peixoto\AppData\Roaming\npm\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.3.0
+2 info using node@v22.18.0
+3 silly config load:file:C:\Users\davi.peixoto\AppData\Roaming\npm\node_modules\npm\npmrc
+4 silly config load:file:C:\SERVIDOR\app-frauda\.npmrc
+5 silly config load:file:C:\Users\davi.peixoto\.npmrc
+6 silly config load:file:C:\Users\davi.peixoto\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm run start
+8 verbose argv "run" "start"
+9 verbose logfile logs-max:10 dir:C:\SERVIDOR\app-frauda\Usersdavi.peixotoAppDataLocalnpm-cache\_logs\2025-11-29T19_10_44_864Z-
+10 verbose logfile C:\SERVIDOR\app-frauda\Usersdavi.peixotoAppDataLocalnpm-cache\_logs\2025-11-29T19_10_44_864Z-debug-0.log
+11 silly logfile done cleaning log files

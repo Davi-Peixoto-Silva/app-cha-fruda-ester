@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Restrito</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap'); body { font-family: 'Poppins', sans-serif; }</style>
+</head>
+<body class="bg-slate-100 h-screen flex items-center justify-center">
+
+    <div class="bg-white p-8 rounded-2xl shadow-xl w-full max-w-sm">
+        <div class="text-center mb-6">
+            <div class="inline-flex items-center justify-center w-12 h-12 bg-slate-100 rounded-full text-2xl mb-2">🔒</div>
+            <h1 class="text-xl font-bold text-slate-700">Área Administrativa</h1>
+            <p class="text-slate-400 text-sm">Digite a senha para continuar</p>
+        </div>
+
+        <form action="/login" method="POST" class="space-y-4">
+            <div>
+                <input type="password" name="senha" placeholder="Senha de acesso" required 
+                    class="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-pink-500 focus:ring-4 focus:ring-pink-500/10 outline-none transition">
+            </div>
+
+            <% if (typeof erro !== 'undefined') { %>
+                <div class="text-red-500 text-sm text-center bg-red-50 p-2 rounded-lg font-medium animate-pulse">
+                    <%= erro %>
+                </div>
+            <% } %>
+
+            <button type="submit" class="w-full bg-slate-800 text-white py-3 rounded-lg font-bold hover:bg-slate-900 transition shadow-lg">
+                Entrar
+            </button>
+        </form>
+        
+        <a href="/" class="block text-center mt-6 text-slate-400 hover:text-slate-600 text-sm">Voltar ao site</a>
+    </div>
+
+</body>
+</html>
