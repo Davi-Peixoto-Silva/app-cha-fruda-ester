@@ -17,7 +17,7 @@
 <body class="bg-slate-50 min-h-screen p-4 md:p-8">
 
     <% 
-        // Inicializa contadores para os novos tamanhos
+        // Lógica de contagem das fraldas
         let contagem = { 'RN': 0, 'P': 0, 'M': 0, 'G': 0, 'XG': 0, 'XXG': 0, 'OUTROS': 0 };
         
         itens.forEach(item => {
@@ -52,7 +52,6 @@
         </div>
 
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-            
             <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 border-l-4 border-l-pink-500">
                 <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total</span>
                 <div class="text-3xl font-bold text-slate-800 mt-1"><%= itens.length %></div>
@@ -86,9 +85,17 @@
                 <input type="text" id="searchInput" class="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-lg leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-2 focus:ring-pink-500 focus:border-pink-500 sm:text-sm transition duration-150 ease-in-out" placeholder="Buscar por nome, número ou telefone...">
             </div>
 
-            <button onclick="exportarExcel()" class="w-full md:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-md shadow-green-100 transition flex items-center justify-center gap-2 text-sm font-medium">
-                <i class="ph ph-microsoft-excel-logo text-lg"></i> Baixar Planilha
-            </button>
+            <div class="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+                <form action="/admin/limpar" method="POST" onsubmit="return confirm('ATENÇÃO: Você tem certeza que deseja APAGAR TODOS os registros? Essa ação não pode ser desfeita.')" class="w-full md:w-auto">
+                    <button type="submit" class="w-full px-5 py-2.5 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 rounded-lg transition flex items-center justify-center gap-2 text-sm font-medium">
+                        <i class="ph ph-trash"></i> Zerar Banco
+                    </button>
+                </form>
+
+                <button onclick="exportarExcel()" class="w-full md:w-auto px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-lg shadow-md shadow-green-100 transition flex items-center justify-center gap-2 text-sm font-medium">
+                    <i class="ph ph-microsoft-excel-logo text-lg"></i> Baixar Planilha
+                </button>
+            </div>
         </div>
 
         <div class="bg-white rounded-b-xl shadow-sm overflow-hidden border border-slate-200">
@@ -126,9 +133,8 @@
 
                             <td class="p-4 text-center">
                                 <% 
-                                    // LOGICA DE CORES
                                     let tamanho = item.fralda ? item.fralda.trim().toUpperCase() : '';
-                                    let classeCor = 'bg-slate-100 text-slate-600'; // Default
+                                    let classeCor = 'bg-slate-100 text-slate-600';
 
                                     if(tamanho === 'P')   classeCor = 'bg-emerald-100 text-emerald-700';
                                     if(tamanho === 'M')   classeCor = 'bg-cyan-100 text-cyan-700';
@@ -143,7 +149,7 @@
 
                             <td class="p-4 text-right text-slate-500 font-mono text-xs">
                                 <% 
-                                    // CORREÇÃO DA DATA AQUI
+                                    // CORREÇÃO CRÍTICA DA DATA
                                     const dataObj = new Date(item.data);
                                     
                                     const dataFormatada = dataObj.toLocaleDateString('pt-BR', {
@@ -177,7 +183,6 @@
     </div>
 
     <script>
-        // Lógica de Busca e Exportação
         const searchInput = document.getElementById('searchInput');
         const tableRows = document.querySelectorAll('tbody tr');
         const noResultsMsg = document.getElementById('semResultados');

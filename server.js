@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import session from "express-session";
 import path from "path";
 import { fileURLToPath } from "url";
-import pgSimple from "connect-pg-simple"; // NECESSÁRIO PARA LOGIN NA VERCEL
+import pgSimple from "connect-pg-simple"; 
 
 // --- CONFIGURAÇÃO PARA ES MODULES ---
 const __filename = fileURLToPath(import.meta.url);
@@ -56,17 +56,17 @@ app.set('trust proxy', 1);
 
 app.use(session({
     store: new pgSession({
-        conString: process.env.POSTGRES_URL, // Usa a URL do banco da Vercel
-        createTableIfMissing: true // Cria a tabela de sessão automaticamente
+        conString: process.env.POSTGRES_URL, 
+        createTableIfMissing: true 
     }),
     secret: "chave-secreta-do-cha-da-ester",
     resave: false,
     saveUninitialized: false,
     cookie: { 
-        maxAge: 30 * 24 * 60 * 60 * 1000, // 30 dias
-        secure: true, // OBRIGATÓRIO NA VERCEL (HTTPS)
+        maxAge: 30 * 24 * 60 * 60 * 1000, 
+        secure: true, 
         httpOnly: true,
-        sameSite: 'none' // Importante para mobile/cross-site
+        sameSite: 'none' 
     } 
 }));
 
@@ -83,14 +83,37 @@ app.get("/setup-db", async (req, res) => {
                 data TIMESTAMP DEFAULT NOW()
             );
         `;
-        return res.send("Tabelas verificadas com sucesso! (Tabela 'session' criada automaticamente pelo plugin).");
+        return res.send("Tabelas verificadas com sucesso!");
     } catch (error) {
         return res.status(500).json({ error });
     }
 });
 
-// --- ROTAS DO SISTEMA ---
+// --- ROTA DE LIMPEZA SECRETA (VIA LINK) ---
+app.get("/limpar-tudo", async (req, res) => {
+    if (req.query.senha !== SENHA_ADMIN) {
+        return res.send("Acesso negado. Precisa da senha.");
+    }
+    try {
+        await sql`TRUNCATE TABLE escolhas`;
+        res.send("Banco de dados limpo com sucesso! <a href='/'>Voltar</a>");
+    } catch (error) {
+        res.status(500).send("Erro ao limpar: " + error.message);
+    }
+});
 
+// --- ROTA DE LIMPEZA ADMIN (VIA BOTÃO VERMELHO) ---
+app.post("/admin/limpar", async (req, res) => {
+    if (!req.session.admin) return res.redirect("/login");
+    try {
+        await sql`TRUNCATE TABLE escolhas`;
+        res.redirect("/admin");
+    } catch (err) {
+        res.send("Erro ao limpar: " + err.message);
+    }
+});
+
+// --- ROTAS DO SISTEMA ---
 app.get("/", async (req, res) => {
     try {
         const { rows } = await sql`SELECT numero, nome FROM escolhas`;
@@ -98,7 +121,6 @@ app.get("/", async (req, res) => {
         const ocupadosNomes = {};
         rows.forEach(row => { ocupadosNomes[row.numero] = row.nome.split(' ')[0]; });
         const progresso = Math.round((ocupados.length / 300) * 100);
-        
         res.render("index", { ocupados, ocupadosNomes, progresso, nomeBebe: NOME_BEBE });
     } catch (err) {
         console.error(err);
@@ -107,63 +129,17 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/registrar", async (req, res) => {
-    // 1. Recebe os dados do formulário
     let { numero, nome, telefone, fralda } = req.body;
     const versiculoSorteado = VERSICULOS[Math.floor(Math.random() * VERSICULOS.length)];
 
     try {
-        // CORREÇÃO CRÍTICA: Converter o número de "Texto" para "Inteiro"
-        numero = parseInt(numero);
-
-        // 2. Tenta salvar no banco
-        await sql`
-            INSERT INTO escolhas (numero, nome, telefone, fralda, data) 
-            VALUES (${numero}, ${nome}, ${telefone}, ${fralda}, NOW())
-        `;
-
-        // 3. Sucesso
-        res.render("mensagem", { 
-            titulo: "Sucesso!", 
-            msg: `Você garantiu o número ${numero} para o Chá da ${NOME_BEBE}! Obrigado por participar!`,
-            tipo: "sucesso",
-            versiculo: versiculoSorteado
-        });
+        numero = parseInt(numero); // Converte para inteiro
+        await sql`INSERT INTO escolhas (numero, nome, telefone, fralda, data) VALUES (${numero}, ${nome}, ${telefone}, ${fralda}, NOW())`;
+        res.render("mensagem", { titulo: "Sucesso!", msg: `Você garantiu o número ${numero}!`, tipo: "sucesso", versiculo: versiculoSorteado });
     } catch (err) {
-        // Se for erro de duplicidade (alguém roubou o número antes)
-        if (err.code === '23505') {
-            return res.render("mensagem", { 
-                titulo: "Ops!", 
-                msg: `O número ${numero} já foi escolhido por outra pessoa. Tente atualizar a página.`,
-                tipo: "erro",
-                versiculo: null 
-            });
-        }
-
-        // MOSTRAR O ERRO REAL PARA VOCÊ CORRIGIR
+        if (err.code === '23505') return res.render("mensagem", { titulo: "Ops!", msg: `O número ${numero} já foi escolhido.`, tipo: "erro", versiculo: null });
         console.error(err);
-        return res.render("mensagem", { 
-            titulo: "Erro no Sistema", 
-            // Aqui ele vai te contar a verdade sobre o erro (ex: Tabela não existe)
-            msg: "Detalhe do erro: " + err.message, 
-            tipo: "erro", 
-            versiculo: null 
-        });
-    }
-});
-
-// --- ROTA DE LIMPEZA (CUIDADO!) ---
-app.get("/limpar-tudo", async (req, res) => {
-    // Proteção simples para ninguém apagar por engano
-    if (req.query.senha !== SENHA_ADMIN) {
-        return res.send("Acesso negado. Precisa da senha.");
-    }
-
-    try {
-        // O comando TRUNCATE apaga todos os dados da tabela
-        await sql`TRUNCATE TABLE escolhas`;
-        res.send("Banco de dados limpo com sucesso! <a href='/'>Voltar</a>");
-    } catch (error) {
-        res.status(500).send("Erro ao limpar: " + error.message);
+        return res.render("mensagem", { titulo: "Erro no Sistema", msg: "Detalhe: " + err.message, tipo: "erro", versiculo: null });
     }
 });
 
@@ -171,10 +147,8 @@ app.get("/limpar-tudo", async (req, res) => {
 app.get("/login", (req, res) => res.render("login"));
 
 app.post("/login", (req, res) => {
-    const { senha } = req.body;
-    if (senha === SENHA_ADMIN) {
+    if (req.body.senha === SENHA_ADMIN) {
         req.session.admin = true;
-        // Força salvar no banco antes de redirecionar
         req.session.save(err => {
             if(err) console.log(err);
             res.redirect("/admin");
@@ -195,8 +169,6 @@ app.get("/admin", async (req, res) => {
         const { rows } = await sql`SELECT * FROM escolhas ORDER BY numero`;
         res.render("admin", { itens: rows });
     } catch (err) {
-        console.error(err);
-        // Agora mostra o erro REAL na tela
         res.status(500).send("Erro detalhado do Banco: " + err.message);
     }
 });
@@ -204,24 +176,18 @@ app.get("/admin", async (req, res) => {
 // --- SORTEIO ---
 app.get("/sortear", async (req, res) => {
     const hoje = new Date().toISOString().split("T")[0]; 
-    if (hoje < DATA_SORTEIO) {
-       const dataFormatada = DATA_SORTEIO.split('-').reverse().join('/');
-       return res.render("mensagem", { titulo: "Aguarde o Grande Dia!", msg: `O sorteio será realizado apenas no dia <b>${dataFormatada}</b>.`, tipo: "erro", versiculo: null });
-    }
+    if (hoje < DATA_SORTEIO) return res.render("mensagem", { titulo: "Aguarde!", msg: `Sorteio dia ${DATA_SORTEIO}`, tipo: "erro", versiculo: null });
+    
     try {
         const { rows } = await sql`SELECT * FROM escolhas`;
-        if (!rows || rows.length === 0) return res.render("mensagem", { titulo: "Lista Vazia", msg: "Ninguém participou da rifa ainda.", tipo: "erro", versiculo: null });
+        if (!rows.length) return res.render("mensagem", { titulo: "Vazio", msg: "Sem participantes.", tipo: "erro", versiculo: null });
         const sorteado = rows[Math.floor(Math.random() * rows.length)];
         res.render("resultado", { sorteado });
-    } catch (err) {
-        res.send("Erro no sorteio");
-    }
+    } catch (err) { res.send("Erro sorteio"); }
 });
 
 export default app;
 
 if (process.env.NODE_ENV !== 'production') {
-    app.listen(3000, () => {
-        console.log("Servidor rodando em: http://localhost:3000");
-    });
+    app.listen(3000, () => console.log("Servidor rodando em: http://localhost:3000"));
 }
