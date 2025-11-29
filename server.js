@@ -151,6 +151,22 @@ app.post("/registrar", async (req, res) => {
     }
 });
 
+// --- ROTA DE LIMPEZA (CUIDADO!) ---
+app.get("/limpar-tudo", async (req, res) => {
+    // Proteção simples para ninguém apagar por engano
+    if (req.query.senha !== SENHA_ADMIN) {
+        return res.send("Acesso negado. Precisa da senha.");
+    }
+
+    try {
+        // O comando TRUNCATE apaga todos os dados da tabela
+        await sql`TRUNCATE TABLE escolhas`;
+        res.send("Banco de dados limpo com sucesso! <a href='/'>Voltar</a>");
+    } catch (error) {
+        res.status(500).send("Erro ao limpar: " + error.message);
+    }
+});
+
 // --- LOGIN & ADMIN ---
 app.get("/login", (req, res) => res.render("login"));
 
