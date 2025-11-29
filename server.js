@@ -107,11 +107,21 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/registrar", async (req, res) => {
-    const { numero, nome, telefone, fralda } = req.body;
+    // 1. Recebe os dados do formulário
+    let { numero, nome, telefone, fralda } = req.body;
     const versiculoSorteado = VERSICULOS[Math.floor(Math.random() * VERSICULOS.length)];
 
     try {
-        await sql`INSERT INTO escolhas (numero, nome, telefone, fralda, data) VALUES (${numero}, ${nome}, ${telefone}, ${fralda}, NOW())`;
+        // CORREÇÃO CRÍTICA: Converter o número de "Texto" para "Inteiro"
+        numero = parseInt(numero);
+
+        // 2. Tenta salvar no banco
+        await sql`
+            INSERT INTO escolhas (numero, nome, telefone, fralda, data) 
+            VALUES (${numero}, ${nome}, ${telefone}, ${fralda}, NOW())
+        `;
+
+        // 3. Sucesso
         res.render("mensagem", { 
             titulo: "Sucesso!", 
             msg: `Você garantiu o número ${numero} para o Chá da ${NOME_BEBE}! Obrigado por participar!`,
@@ -119,11 +129,25 @@ app.post("/registrar", async (req, res) => {
             versiculo: versiculoSorteado
         });
     } catch (err) {
+        // Se for erro de duplicidade (alguém roubou o número antes)
         if (err.code === '23505') {
-            return res.render("mensagem", { titulo: "Ops!", msg: `O número ${numero} já foi escolhido por outra pessoa.`, tipo: "erro", versiculo: null });
+            return res.render("mensagem", { 
+                titulo: "Ops!", 
+                msg: `O número ${numero} já foi escolhido por outra pessoa. Tente atualizar a página.`,
+                tipo: "erro",
+                versiculo: null 
+            });
         }
+
+        // MOSTRAR O ERRO REAL PARA VOCÊ CORRIGIR
         console.error(err);
-        return res.render("mensagem", { titulo: "Erro", msg: "Erro interno", tipo: "erro", versiculo: null });
+        return res.render("mensagem", { 
+            titulo: "Erro no Sistema", 
+            // Aqui ele vai te contar a verdade sobre o erro (ex: Tabela não existe)
+            msg: "Detalhe do erro: " + err.message, 
+            tipo: "erro", 
+            versiculo: null 
+        });
     }
 });
 
