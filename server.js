@@ -1,9 +1,13 @@
-// server.js (Adaptado para Vercel Postgres)
-const express = require("express");
-const { sql } = require("@vercel/postgres"); // Driver do Postgres
-const bodyParser = require("body-parser");
-const session = require("express-session");
-const path = require("path");
+import express from "express";
+import { sql } from "@vercel/postgres";
+import bodyParser from "body-parser";
+import session from "express-session";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// --- CONFIGURAÇÃO PARA ES MODULES (CORREÇÃO DO __DIRNAME) ---
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 
@@ -24,8 +28,6 @@ const VERSICULOS = [
     { texto: "Como pastor ele cuida de seu rebanho, com o braço ajunta os cordeiros e os carrega no colo.", ref: "Isaías 40:11" },
     { texto: "Deixem vir a mim as crianças e não as impeçam; pois o Reino dos céus pertence aos que são semelhantes a elas.", ref: "Mateus 19:14" },
     { texto: "Não tenho maior alegria do que ouvir que meus filhos estão andando na verdade.", ref: "3 João 1:4" },
-
-    // --- Versículos adicionais sobre filhos e pais ---
     { texto: "Honra teu pai e tua mãe, para que tenhas vida longa na terra que o Senhor, o teu Deus, te dá.", ref: "Êxodo 20:12" },
     { texto: "Pais, não irritem seus filhos; antes criem-nos segundo a instrução e o conselho do Senhor.", ref: "Efésios 6:4" },
     { texto: "Filhos, obedeçam a seus pais no Senhor, pois isso é justo.", ref: "Efésios 6:1" },
@@ -41,9 +43,9 @@ const VERSICULOS = [
     { texto: "E todos os teus filhos serão ensinados pelo Senhor, e grande será a paz de teus filhos.", ref: "Isaías 54:13" }
 ];
 
-// Configurações do Express
+// --- MIDDLEWARES ---
 app.set("view engine", "ejs");
-app.set('views', path.join(__dirname, 'views')); // Garante que ache a pasta views
+app.set("views", path.join(__dirname, "views")); // Importante para a Vercel achar a pasta
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -54,9 +56,7 @@ app.use(session({
     cookie: { maxAge: 3600000 } 
 }));
 
-// --- FUNÇÃO PARA INICIALIZAR BANCO (Postgres) ---
-// No Postgres, não criamos a tabela no boot do app, mas vou deixar uma rota secreta
-// para você criar a tabela na primeira vez.
+// --- ROTA DE CRIAÇÃO DO BANCO (EXECUTAR UMA VEZ) ---
 app.get("/setup-db", async (req, res) => {
     try {
         await sql`
@@ -79,7 +79,6 @@ app.get("/setup-db", async (req, res) => {
 
 app.get("/", async (req, res) => {
     try {
-        // No Postgres usa-se .rows para pegar os dados
         const { rows } = await sql`SELECT numero, nome FROM escolhas`;
         
         const ocupados = rows.map(r => r.numero);
@@ -98,7 +97,13 @@ app.get("/", async (req, res) => {
         });
     } catch (err) {
         console.error(err);
-        res.status(500).send("Erro ao acessar banco de dados.");
+        // Se der erro, carrega vazio para não quebrar a tela
+        res.render("index", { 
+            ocupados: [], 
+            ocupadosNomes: {}, 
+            progresso: 0, 
+            nomeBebe: NOME_BEBE 
+        });
     }
 });
 
@@ -107,7 +112,6 @@ app.post("/registrar", async (req, res) => {
     const versiculoSorteado = VERSICULOS[Math.floor(Math.random() * VERSICULOS.length)];
 
     try {
-        // Query adaptada para Postgres
         await sql`
             INSERT INTO escolhas (numero, nome, telefone, fralda, data) 
             VALUES (${numero}, ${nome}, ${telefone}, ${fralda}, NOW())
@@ -120,8 +124,7 @@ app.post("/registrar", async (req, res) => {
             versiculo: versiculoSorteado
         });
     } catch (err) {
-        // Código 23505 é erro de chave única (numero repetido) no Postgres
-        if (err.code === '23505') {
+        if (err.code === '23505') { // Código de erro para Duplicidade no Postgres
             return res.render("mensagem", { 
                 titulo: "Ops!", 
                 msg: `O número ${numero} já foi escolhido por outra pessoa.`,
@@ -134,7 +137,7 @@ app.post("/registrar", async (req, res) => {
     }
 });
 
-// --- SISTEMA DE LOGIN ---
+// --- LOGIN & ADMIN ---
 app.get("/login", (req, res) => res.render("login"));
 
 app.post("/login", (req, res) => {
@@ -152,19 +155,17 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
 });
 
-// --- ÁREA ADMINISTRATIVA ---
 app.get("/admin", async (req, res) => {
     if (!req.session.admin) return res.redirect("/login");
-
     try {
         const { rows } = await sql`SELECT * FROM escolhas ORDER BY numero`;
         res.render("admin", { itens: rows });
     } catch (err) {
-        res.send("Erro no banco.");
+        res.send("Erro no banco de dados.");
     }
 });
 
-// --- SISTEMA DE SORTEIO ---
+// --- SORTEIO ---
 app.get("/sortear", async (req, res) => {
     const hoje = new Date().toISOString().split("T")[0]; 
     if (hoje < DATA_SORTEIO) {
@@ -194,5 +195,15 @@ app.get("/sortear", async (req, res) => {
     }
 });
 
-// Necessário para a Vercel saber rodar o app
-module.exports = app;
+// --- EXPORTAÇÃO PARA VERCEL ---
+export default app;
+
+// Só roda na porta 3000 se for no seu computador
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(3000, () => {
+        console.log("------------------------------------------------");
+        console.log(`Servidor rodando em: http://localhost:3000`);
+        console.log(`Chá de Fralda da: ${NOME_BEBE}`);
+        console.log("------------------------------------------------");
+    });
+}
