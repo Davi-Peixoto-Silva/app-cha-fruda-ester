@@ -105,13 +105,18 @@ app.get("/limpar-tudo", async (req, res) => {
 // --- ROTA DE LIMPEZA ADMIN (VIA BOTÃO VERMELHO) ---
 app.post("/admin/limpar", async (req, res) => {
     if (!req.session.admin) return res.redirect("/login");
+
     try {
-        await sql`TRUNCATE TABLE escolhas`;
+        await sql`DELETE FROM escolhas`;
+        await sql`ALTER SEQUENCE escolhas_id_seq RESTART WITH 1`;
+
         res.redirect("/admin");
     } catch (err) {
+        console.error("Erro ao limpar:", err);
         res.send("Erro ao limpar: " + err.message);
     }
 });
+
 
 // --- ROTAS DO SISTEMA ---
 app.get("/", async (req, res) => {
